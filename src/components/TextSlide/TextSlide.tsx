@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const generateText = (length: number):JSX.Element => {
     let result: Array<JSX.Element> = [];
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&!@';
@@ -15,8 +13,9 @@ const generateText = (length: number):JSX.Element => {
     return <>{result}</>;
 };
 
+const randomText = generateText(400);
+
 export default function TextSlide() {
-    const [randomText, setRandomText] = useState(generateText(400));
     return <div className="slide">
         {randomText}
     </div>
