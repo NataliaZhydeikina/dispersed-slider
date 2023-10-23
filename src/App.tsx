@@ -19,9 +19,9 @@ function App() {
     <Slider encoded />
     <Slider />
     <div id="container" ref={ref}>
-      {/* <Canvas >
+      <Canvas >
         <Particles width={size[0]} height={size[1]}/>
-      </Canvas> */}
+      </Canvas>
     </div>
     </>
   )

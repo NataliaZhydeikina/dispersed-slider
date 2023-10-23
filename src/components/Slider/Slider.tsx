@@ -26,7 +26,7 @@ export default function Slider({encoded}:{encoded?: boolean}) {
             <div className="slider__scroller" style={{transform: `translateX(${time}px)`}}>
             {[...Array(5)].map((x, i) => encoded?
                 <TextSlide key={i} rerender={
-                    Math.floor((width/(2*560))+ (-time+100)/560) == i &&
+                    Math.floor((width/(2*560))+ (-time+20)/560) == i &&
                     time%7==0
                 } />:
                 <ImageSlide key={i} />
