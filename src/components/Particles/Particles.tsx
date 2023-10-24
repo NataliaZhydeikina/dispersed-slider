@@ -1,6 +1,6 @@
-import { OrbitControls, OrthographicCamera, Points, shaderMaterial } from "@react-three/drei";
-import fragmentShader from "./shaders/fragment.glsl";
-import vertexShader from "./shaders/vertex.glsl";
+import { OrbitControls, OrthographicCamera, PointMaterial, Points, shaderMaterial } from "@react-three/drei";
+import fragmentShader from "./shaders/fragment.frag";
+import vertexShader from "./shaders/vertex.vert";
 import * as THREE from "three";
 
 function rangeRandom(start: number, end:number):number {
@@ -49,8 +49,8 @@ export default function Particles({width, height}: {width:number, height: number
         <planeGeometry args={[1, 1]} />
         <meshStandardMaterial color='yellow' side={THREE.DoubleSide} />
       </mesh> */}
-      <Points positions={positions} sizes={sizes}>
-        <material></material>
+      <Points positions={positions}>
+        <PointMaterial vertexColors size={35} sizeAttenuation={false} depthWrite={false} toneMapped={false} />
       </Points>
       <OrbitControls />
     </>

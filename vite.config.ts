@@ -12,5 +12,5 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components'),
     },
   },
-  plugins: [react(), glsl({include: ['**/*.glsl']})],
+  plugins: [react(), glsl()],
 })
