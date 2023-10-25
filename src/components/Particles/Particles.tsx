@@ -2,6 +2,7 @@ import { OrbitControls, OrthographicCamera, PointMaterial, Points, shaderMateria
 import fragmentShader from "./shaders/fragment.frag";
 import vertexShader from "./shaders/vertex.vert";
 import * as THREE from "three";
+import { useMemo } from "react";
 
 function rangeRandom(start: number, end:number):number {
   let r = Math.random();
@@ -32,6 +33,18 @@ export default function Particles({width, height}: {width:number, height: number
       velocity[i] = rangeRandom(0.1, 1);
       distance[i] = rangeRandom(0.1, 1);
     }
+    console.log(fragmentShader);
+
+    const data = useMemo(() => ({
+      fragmentShader,
+      vertexShader,
+      uniforms: {
+        position: { value:  positions},
+        aDistance: { value: distance },
+        aSize: { value: sizes },
+        aVelocity: { value: velocity }
+      }
+    }), []);
 
     return <>
       <OrthographicCamera makeDefault position={[0, 0, 2]}
@@ -48,9 +61,10 @@ export default function Particles({width, height}: {width:number, height: number
       {/* <mesh>
         <planeGeometry args={[1, 1]} />
         <meshStandardMaterial color='yellow' side={THREE.DoubleSide} />
-      </mesh> */}
+      </mesh>  */}
       <Points positions={positions}>
         <PointMaterial vertexColors size={35} sizeAttenuation={false} depthWrite={false} toneMapped={false} />
+        <shaderMaterial {...data} />
       </Points>
       <OrbitControls />
     </>
