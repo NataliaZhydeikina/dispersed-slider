@@ -13,13 +13,13 @@ function App() {
       setSize([current.clientWidth, current.clientHeight]);
     }
   }, []);
-
+ 
   return (
     <>
     <Slider encoded />
     <Slider />
     <div id="container" ref={ref}>
-      <Canvas >
+      <Canvas>
         <Particles width={size[0]} height={size[1]}/>
       </Canvas>
     </div>
