@@ -10,28 +10,31 @@ function rangeRandom(start: number, end:number):number {
   return r*(end - start) + start;
 }
  
-export default function Particles({width, height}: {width:number, height: number}) {
+export default function ParticlesBackground({width, height}: {width:number, height: number}) {
   const ref = useRef<THREE.Points|null>(null) as MutableRefObject<THREE.Points>;
   let aspect = width/height;
-  let number = 3000;
+  let number = 1000;
   const positions = new Float32Array(number*3);
   const sizes = new Float32Array(number);
   const velocity = new Float32Array(number);
   const distance = new Float32Array(number);
+  const random = new Float32Array(number);
 
     for (let i = 0; i < number; i++) {
       let i3 = i*3;
       positions[i3] = 0;
       positions[i3+1] = 0.66*(Math.random()-0.5 + 0.5*(Math.random()-0.5));
       positions[i3+2] = 0;
-      sizes[i] = rangeRandom(1, 20);
+      sizes[i] = rangeRandom(3, 15);
       velocity[i] = rangeRandom(0.1, 1);
       distance[i] = rangeRandom(0.1, 1);
+      random[i] = Math.random();
     }
   const positionsBuffer = new THREE.BufferAttribute(positions, 3);
   const sizeBuffer = new THREE.BufferAttribute(sizes, 1);
   const velocityBuffer = new THREE.BufferAttribute(velocity, 1);
-  const distanceBuffer = new THREE.BufferAttribute(distance, 1);
+  const distanceBuffer = new THREE.BufferAttribute(distance, 1)
+  const randomBuffer = new THREE.BufferAttribute(random, 1);
 
   const data = useMemo(
     () => ({
@@ -63,6 +66,7 @@ export default function Particles({width, height}: {width:number, height: number
           <bufferAttribute attach={"attributes-aSize"} {...sizeBuffer} />
           <bufferAttribute attach={"attributes-aVelocity"} {...velocityBuffer} />
           <bufferAttribute attach={"attributes-aDistance"} {...distanceBuffer} />
+          <bufferAttribute attach={"attributes-aRandom"} {...randomBuffer} />
         </bufferGeometry>
         <shaderMaterial attach="material" {...data} />
       </points>

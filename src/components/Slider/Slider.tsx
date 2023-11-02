@@ -1,20 +1,9 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import "./Slider.css";
 import TextSlide from '../TextSlide';
 import ImageSlide from '../ImageSlide';
 
-export default function Slider({encoded}:{encoded?: boolean}) {
-    const [time, setTime] = useState(-2*(360+200));
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if(time>0) setTime(-2*(360+200));
-            setTime(t=>t+1);
-        }, 10);
-
-        return () => clearInterval(interval);
-    }, [time]);
-
+export default function Slider({encoded=false, time}:{encoded?: boolean, time: number}) {
     const [width, setWidth] = useState<number>(0);
     
     useLayoutEffect(() => {

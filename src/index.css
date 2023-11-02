@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #2B2D2B;
+  background-color: #171717;
 }
 
 #container {
@@ -12,4 +12,54 @@ body {
   height: 240px;
   position: absolute;
   top: 200px;
+  transition: opacity 0.7s ease-in-out;
+}
+.back {
+  width: 100vw;
+  height: 240px;
+  position: absolute;
+  top: 200px;
+  z-index: -1;
+}
+
+.separator {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  left: 50%;
+  margin-left: -50px;
+  z-index: 10;
+  mix-blend-mode: screen;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.separator::before {
+  position: absolute;
+  width: 50%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
+  background: linear-gradient(90deg, #fff, #6432e6 20%, rgba(100,50,230,0));;
+}
+
+.separator::after {
+  position: absolute;
+  width: 3px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  content: "";
+  background: #fff;
+}
+
+.realseparator {
+  position: absolute;
+  left: calc(50% - 7px);
+  width: 14px;
+  background:radial-gradient(ellipse at 50% 50%, rgb(255, 255, 255) 0%, #6432e6 35%, #6532e600 80%);
+  top: -3px;
+  bottom: -3px;
+  transition: opacity 0.7s ease-in-out;
+  z-index: -1;
 }
